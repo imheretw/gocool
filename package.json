@@ -1,11 +1,13 @@
 {
   "name": "gocool",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "version": "0.1.0",
   "description": "A Node Framework With Best Practices",
   "scripts": {
-    "lint": "eslint .",
+    "prepublish": "npm run build",
+    "build": "rimraf dist && babel lib -s -D -d dist",
     "test": "PORT=4000 nyc mocha --compilers js:babel-core/register -r test/init --recursive test -t 10000",
+    "lint": "eslint .",
     "changelog": "standard-changelog"
   },
   "repository": {
