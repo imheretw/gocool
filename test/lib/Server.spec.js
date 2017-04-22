@@ -1,26 +1,55 @@
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 import path from 'path';
-import Server from '../../lib/Server';
+import Server, { EVENTS } from '../../lib/Server';
+
+chai.use(sinonChai);
 
 describe('Test Server', () => {
+  const config = {};
+  let sandbox;
+  let server;
+
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+
+    // path to root directory of this app
+    const rootPath = path.normalize(__dirname);
+
+    config.path = {
+      view: path.join(rootPath, 'app/views'),
+      static: path.join(rootPath, 'static'),
+    };
+
+    server = new Server({ config });
+  });
+
   describe('constructor()', () => {
-    const config = {};
+    it('should create a server', async () => {
+      expect(server).to.be.defined;
+    });
+  });
 
-    before(() => {
-      // path to root directory of this app
-      const rootPath = path.normalize(__dirname);
+  describe('emit()', () => {
+    describe('when pass unknown event', () => {
+      it('should only log', () => {
+        const spy = sandbox.spy(server._logger, 'info');
 
-      config.path = {
-        view: path.join(rootPath, 'app/views'),
-        static: path.join(rootPath, 'static'),
-      };
+        server.emit('test');
+
+        expect(spy).to.have.been.called;
+      });
     });
 
-    it('should create a object', async () => {
-      const obj = new Server({
-        config,
+    describe(`when pass ${EVENTS.STARTED}`, () => {
+      it('should call _notifyPlugins', () => {
+        const spy = sandbox.spy(server, '_notifyPlugins');
+
+        server.emit(EVENTS.STARTED);
+
+        expect(spy).to.have.been.called;
       });
-      expect(obj).to.be.defined;
     });
   });
 });
