@@ -1,3 +1,22 @@
+<a name="0.1.5"></a>
+## [0.1.5](https://github.com/imheretw/gocool/compare/v0.1.3...v0.1.5) (2017-04-22)
+
+
+### Bug Fixes
+
+* move eventemitter2 to dependency ([f83dfb2](https://github.com/imheretw/gocool/commit/f83dfb2))
+
+
+### Features
+
+* **Logger:** rewrite with debug ([8a9a1e8](https://github.com/imheretw/gocool/commit/8a9a1e8))
+* **node:** [package] add eventemitter2 ([6e60064](https://github.com/imheretw/gocool/commit/6e60064))
+* **Plugin:** add new Class Plugin ([32deea8](https://github.com/imheretw/gocool/commit/32deea8))
+* **Plugin:** extends EventEmitter2 ([2b50906](https://github.com/imheretw/gocool/commit/2b50906))
+* **Server:** when express server is ready, trigger EVENTS.STARTED event to notify plugins ([40fd534](https://github.com/imheretw/gocool/commit/40fd534))
+
+
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/imheretw/gocool/compare/v0.1.3...v0.1.4) (2017-04-22)
 
