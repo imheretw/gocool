@@ -2,7 +2,7 @@ import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import path from 'path';
-import Server, { EVENTS } from '../../lib/Server';
+import Server from '../../lib/Server';
 
 chai.use(sinonChai);
 
@@ -42,11 +42,11 @@ describe('Test Server', () => {
       });
     });
 
-    describe(`when pass ${EVENTS.STARTED}`, () => {
+    describe(`when pass ${Server.EVENTS.STARTED}`, () => {
       it('should call _notifyPlugins', () => {
         const spy = sandbox.spy(server, '_notifyPlugins');
 
-        server.emit(EVENTS.STARTED);
+        server.emit(Server.EVENTS.STARTED);
 
         expect(spy).to.have.been.called;
       });
