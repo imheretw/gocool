@@ -57,7 +57,7 @@ describe('Test Server', () => {
   describe('addPlugin()', () => {
     it('should throw a error', () => {
       expect(() => {
-        server.addPlugin('/test', Plugin);
+        server.addPlugin(Plugin);
       }).to.throw();
     });
   });
