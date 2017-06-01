@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import path from 'path';
 import Server from '../../lib/Server';
+import Plugin from '../../lib/Plugin';
 
 chai.use(sinonChai);
 
@@ -50,6 +51,14 @@ describe('Test Server', () => {
 
         expect(spy).to.have.been.called;
       });
+    });
+  });
+
+  describe('addPlugin()', () => {
+    it('should throw a error', () => {
+      expect(() => {
+        server.addPlugin('/test', Plugin);
+      }).to.throw();
     });
   });
 });
