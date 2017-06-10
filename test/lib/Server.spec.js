@@ -60,5 +60,12 @@ describe('Test Server', () => {
         server.addPlugin(Plugin);
       }).to.throw();
     });
+
+    it('should push to _plugins', () => {
+      class FakePlugin extends Plugin {}
+
+      server.addPlugin(new FakePlugin());
+      expect(server._plugins.length).to.eq(1);
+    });
   });
 });
